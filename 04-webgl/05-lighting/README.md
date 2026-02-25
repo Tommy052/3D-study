@@ -4,6 +4,17 @@ Phong 조명 모델을 GLSL 셰이더로 직접 구현한다.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![CMU 15-462 — Lighting & Shading](https://img.youtube.com/vi/tFx1MaIb9cg/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | [![Kishimisu — Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) |
+| **CMU 15-462** — Phong/Blinn-Phong 조명 모델 수학 | **Kishimisu** — GLSL로 조명과 색상을 직접 계산하는 실습 |
+
+> **참고**: [LearnOpenGL — Basic Lighting](https://learnopengl.com/Lighting/Basic-Lighting) · [WebGL2 Fundamentals — Point Lights](https://webgl2fundamentals.org/webgl/lessons/webgl-3d-lighting-point.html)
+
+---
+
 ## 버텍스 셰이더
 
 ```glsl
@@ -76,6 +87,17 @@ mat3.fromMat4(normalMatrix, modelMatrix);
 mat3.invert(normalMatrix, normalMatrix);
 mat3.transpose(normalMatrix, normalMatrix);
 ```
+
+---
+
+## Phong vs Blinn-Phong
+
+| 항목 | Phong | Blinn-Phong |
+|------|-------|-------------|
+| Specular 계산 | `dot(reflect(-L, N), V)` | `dot(N, halfwayDir)` |
+| 성능 | 느림 | 빠름 |
+| 품질 | 유사 | 더 자연스러움 |
+| 현재 표준 | 거의 안 씀 | 기본값 |
 
 ---
 

@@ -4,6 +4,17 @@ Model × View × Projection 행렬을 직접 계산해 WebGL로 넘기는 예제
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![CMU 15-462 — Transforms](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | [![Branch Education — Graphics Pipeline](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) |
+| **CMU 15-462** — 좌표 변환과 투영 행렬 이론 | **Branch Education** — MVP가 실제 GPU에서 처리되는 흐름 |
+
+> **참고**: [WebGL2 Fundamentals — 3D Perspective](https://webgl2fundamentals.org/webgl/lessons/webgl-3d-perspective.html) · [gl-matrix 라이브러리](https://glmatrix.net/)
+
+---
+
 ## 목표
 
 ```typescript
@@ -54,6 +65,16 @@ mat4.multiply(mvp, projection, mvp);
 // 셰이더에 전달
 gl.uniformMatrix4fv(mvpLoc, false, mvp);
 ```
+
+---
+
+## 각 행렬의 역할
+
+| 행렬 | 변환 | 좌표계 |
+|------|------|--------|
+| **Model** | 로컬 → 월드 | 물체의 위치·회전·크기 |
+| **View** | 월드 → 뷰 | 카메라 기준으로 재배치 |
+| **Projection** | 뷰 → 클립 | 원근감 적용 (NDC로 압축) |
 
 ---
 

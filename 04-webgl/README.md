@@ -7,6 +7,17 @@ Babylon.js나 Three.js가 내부적으로 사용하는 것이 바로 WebGL이다
 
 ---
 
+## 추천 강의
+
+| | |
+|---|---|
+| [![Branch Education — How do Graphics Cards Work?](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Branch Education** — GPU가 삼각형을 화면에 그리는 전체 흐름 | **CMU 15-462** — 래스터화·버퍼·파이프라인 이론 |
+
+> **핵심 텍스트 레퍼런스**: [WebGL2 Fundamentals](https://webgl2fundamentals.org/) (greggman) — WebGL을 처음 배울 때 가장 좋은 글 모음
+
+---
+
 ## 목차
 
 | # | 주제 | 배우는 것 |

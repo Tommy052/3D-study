@@ -4,6 +4,17 @@
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Branch Education — How do Graphics Cards Work?](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Branch Education** — GPU 메모리 구조와 버퍼 데이터 흐름 | **CMU 15-462** — 버텍스 처리와 GPU 메모리 아키텍처 |
+
+> **참고**: [WebGL2 Fundamentals — Data Textures](https://webgl2fundamentals.org/webgl/lessons/webgl-data-textures.html) · [LearnOpenGL — VAO/VBO/EBO](https://learnopengl.com/Getting-started/Hello-Triangle)
+
+---
+
 ## VBO (Vertex Buffer Object)
 
 정점 데이터(위치, UV, 노멀 등)를 GPU에 저장하는 버퍼.
@@ -57,6 +68,27 @@ gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
 | `gl.STATIC_DRAW` | 한 번 업로드, 여러 번 사용 (정적 메쉬) |
 | `gl.DYNAMIC_DRAW` | 자주 업데이트 (애니메이션) |
 | `gl.STREAM_DRAW` | 매 프레임 업데이트 (파티클) |
+
+---
+
+## 인터리브 버퍼 (Interleaved Buffer)
+
+위치·UV·노멀을 하나의 VBO에 묶는 방식 — 캐시 효율이 좋다.
+
+```typescript
+const vertices = new Float32Array([
+//  x      y     z     u    v    nx   ny   nz
+   0.0,  0.5,  0.0,  0.5, 1.0, 0.0, 0.0, 1.0,
+  -0.5, -0.5,  0.0,  0.0, 0.0, 0.0, 0.0, 1.0,
+   0.5, -0.5,  0.0,  1.0, 0.0, 0.0, 0.0, 1.0,
+]);
+
+const stride = 8 * 4; // float 8개 × 4바이트
+
+gl.vertexAttribPointer(posLoc,    3, gl.FLOAT, false, stride, 0);      // xyz
+gl.vertexAttribPointer(uvLoc,     2, gl.FLOAT, false, stride, 3 * 4);  // uv
+gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, stride, 5 * 4);  // normal
+```
 
 ---
 

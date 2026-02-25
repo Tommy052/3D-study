@@ -4,6 +4,17 @@ WebGL의 "Hello World". 화면에 삼각형 하나를 그리는 전체 과정.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Branch Education — How do Graphics Cards Work?](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) | [![CMU 15-462 — Rasterization Pipeline](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Branch Education** — 삼각형 데이터가 GPU를 거쳐 픽셀이 되는 과정 | **CMU 15-462** — 래스터화 파이프라인 이론 |
+
+> **참고**: [WebGL2 Fundamentals — Fundamentals](https://webgl2fundamentals.org/webgl/lessons/webgl-fundamentals.html)
+
+---
+
 ## 전체 코드 흐름
 
 ```typescript
