@@ -5,6 +5,17 @@ Rust 문법의 영향을 받았으며, GLSL보다 타입이 엄격하다.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Kishimisu — Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Kishimisu** — GLSL 문법 기초 (WGSL과 비교하며 학습) | **CMU 15-462** — GPU 셰이더 개념 전반 |
+
+> **공식 레퍼런스**: [WGSL Spec (W3C)](https://www.w3.org/TR/WGSL/) · [WebGPU Fundamentals — WGSL](https://webgpufundamentals.org/webgpu/lessons/webgpu-wgsl.html)
+
+---
+
 ## GLSL vs WGSL 비교
 
 ```glsl

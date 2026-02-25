@@ -5,6 +5,17 @@
 
 ---
 
+## 추천 강의
+
+| | |
+|---|---|
+| [![Kishimisu — Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Kishimisu** — GLSL 셰이더 아트 코딩 입문 | **CMU 15-462** — 컴퓨터 그래픽스 전체 커리큘럼 |
+
+> **추천 순서**: Kishimisu 영상으로 GLSL 감각을 익힌 뒤, 직접 Shadertoy에서 실험하며 CMU 강의로 이론을 보완한다.
+
+---
+
 ## 목차
 
 ### GLSL — WebGL 셰이더 언어
@@ -67,3 +78,6 @@ fn fs_main() -> @location(0) vec4f {
   return vec4f(1.0, 0.5, 0.0, 1.0);
 }
 ```
+
+
+---

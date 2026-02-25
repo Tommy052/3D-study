@@ -4,6 +4,17 @@ WebGPU에서 정점 데이터를 처리하는 셰이더.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | [![Kishimisu — Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) |
+| **CMU 15-462** — 버텍스 처리와 좌표 변환 파이프라인 | **Kishimisu** — 셰이더 입출력 구조 이해 |
+
+> **공식 코드랩**: [Your first WebGPU app (Google)](https://codelabs.developers.google.com/your-first-webgpu-app) · [WebGPU Fundamentals](https://webgpufundamentals.org/)
+
+---
+
 ## 구조체로 입출력 정의
 
 ```wgsl
@@ -58,6 +69,17 @@ const vertexBufferLayout: GPUVertexBufferLayout = {
   ],
 };
 ```
+
+---
+
+## GLSL vs WGSL 버텍스 셰이더 비교
+
+| 항목 | GLSL (WebGL) | WGSL (WebGPU) |
+|------|-------------|---------------|
+| 입력 선언 | `attribute vec3 pos` | `@location(0) pos: vec3f` |
+| 출력 | `gl_Position = ...` | `return vec4f(...)` |
+| Uniform | `uniform mat4 mvp` | `@group(0) @binding(0) var<uniform>` |
+| 구조체 | 제한적 | 구조체로 깔끔하게 묶음 |
 
 ---
 

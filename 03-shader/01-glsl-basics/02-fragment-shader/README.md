@@ -5,6 +5,17 @@
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Kishimisu — Introduction to Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) | [![Inigo Quilez — Painting a Character with Maths](https://img.youtube.com/vi/8--5LwHRhjk/mqdefault.jpg)](https://www.youtube.com/watch?v=8--5LwHRhjk) |
+| **Kishimisu** — GLSL 프래그먼트 셰이더로 셰이더 아트 만들기 | **Inigo Quilez** — 수학으로 픽셀 색상 제어하기 (Shadertoy 창시자) |
+
+> **실습**: [Shadertoy](https://www.shadertoy.com/) — 브라우저에서 바로 프래그먼트 셰이더를 작성하고 결과를 확인할 수 있다.
+
+---
+
 ## 역할
 
 ```

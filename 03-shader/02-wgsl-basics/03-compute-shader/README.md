@@ -5,6 +5,17 @@ WebGPU에서만 지원 (WebGL 미지원).
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | [![Inigo Quilez — Painting a Character with Maths](https://img.youtube.com/vi/8--5LwHRhjk/mqdefault.jpg)](https://www.youtube.com/watch?v=8--5LwHRhjk) |
+| **CMU 15-462** — GPU 병렬 처리 아키텍처 이론 | **Inigo Quilez** — GPU에서 수학으로 이미지를 그리는 원리 |
+
+> **공식 코드랩**: [Get started with GPU Compute on the web (Google)](https://developer.chrome.com/docs/capabilities/web-apis/gpu-compute) — Conway's Game of Life를 컴퓨트 셰이더로 구현하는 실습 포함
+
+---
+
 ## 개념
 
 ```
@@ -83,6 +94,17 @@ pass.end();
 
 device.queue.submit([encoder.finish()]);
 ```
+
+---
+
+## 렌더 셰이더 vs 컴퓨트 셰이더
+
+| 항목 | 버텍스/프래그먼트 | 컴퓨트 |
+|------|----------------|--------|
+| 목적 | 화면 렌더링 | 범용 GPU 연산 |
+| 출력 | 픽셀 색상 | Storage Buffer |
+| 트리거 | Draw Call | dispatchWorkgroups |
+| 지원 | WebGL + WebGPU | WebGPU 전용 |
 
 ---
 

@@ -5,6 +5,17 @@
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Kishimisu — Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) | [![CMU 15-462 — Rasterization](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Kishimisu** — GLSL 전체 흐름과 셰이더 기초 | **CMU 15-462** — 버텍스 처리와 래스터화 파이프라인 |
+
+> **참고**: [WebGL2 Fundamentals — Shaders and GLSL](https://webgl2fundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html)
+
+---
+
 ## 역할
 
 ```

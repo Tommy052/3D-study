@@ -4,6 +4,17 @@ CPU(JavaScript)와 GPU(GLSL) 사이에서 데이터를 주고받는 방법.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Kishimisu — Shader Art Coding](https://img.youtube.com/vi/f4s1h2YETNY/mqdefault.jpg)](https://www.youtube.com/watch?v=f4s1h2YETNY) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Kishimisu** — uniform으로 시간·마우스 값 전달하는 실습 패턴 | **CMU 15-462** — GPU 데이터 흐름과 셰이더 인터페이스 |
+
+> **참고**: [WebGL2 Fundamentals — How It Works](https://webgl2fundamentals.org/webgl/lessons/webgl-how-it-works.html)
+
+---
+
 ## 변수 종류
 
 | 한정자 | 방향 | 업데이트 | 설명 |
