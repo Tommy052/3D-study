@@ -1,0 +1,69 @@
+# 03. 셰이더 (Shader)
+
+셰이더는 GPU에서 실행되는 프로그램이다.
+각 정점(Vertex)과 픽셀(Fragment)의 색상·위치를 직접 제어할 수 있다.
+
+---
+
+## 목차
+
+### GLSL — WebGL 셰이더 언어
+| # | 주제 |
+|---|------|
+| [01](./01-glsl-basics/01-vertex-shader) | 버텍스 셰이더 |
+| [02](./01-glsl-basics/02-fragment-shader) | 프래그먼트 셰이더 |
+| [03](./01-glsl-basics/03-uniforms-varyings) | Uniform, Varying, Attribute |
+
+### WGSL — WebGPU 셰이더 언어
+| # | 주제 |
+|---|------|
+| [01](./02-wgsl-basics/01-syntax) | 기본 문법 |
+| [02](./02-wgsl-basics/02-vertex-shader) | 버텍스 셰이더 |
+| [03](./02-wgsl-basics/03-compute-shader) | 컴퓨트 셰이더 |
+
+---
+
+## GLSL vs WGSL 비교
+
+| 항목 | GLSL | WGSL |
+|------|------|------|
+| 사용처 | WebGL | WebGPU |
+| 타입 시스템 | 약함 | 강함 |
+| 컴퓨트 셰이더 | 미지원 (WebGL 2 제한적) | 지원 |
+| 문법 | C 계열 | Rust 영향 |
+
+---
+
+## 최소 GLSL 예시
+
+```glsl
+// 버텍스 셰이더
+attribute vec3 position;
+uniform mat4 mvpMatrix;
+
+void main() {
+  gl_Position = mvpMatrix * vec4(position, 1.0);
+}
+
+// 프래그먼트 셰이더
+precision mediump float;
+uniform vec3 color;
+
+void main() {
+  gl_FragColor = vec4(color, 1.0);
+}
+```
+
+## 최소 WGSL 예시
+
+```wgsl
+@vertex
+fn vs_main(@location(0) pos: vec3f) -> @builtin(position) vec4f {
+  return vec4f(pos, 1.0);
+}
+
+@fragment
+fn fs_main() -> @location(0) vec4f {
+  return vec4f(1.0, 0.5, 0.0, 1.0);
+}
+```

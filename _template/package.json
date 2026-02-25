@@ -1,0 +1,23 @@
+{
+  "name": "3d-study-example",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    // Babylon.js 예제의 경우 아래 주석 해제
+    // "@babylonjs/core": "^7.0.0",
+    // "@babylonjs/gui": "^7.0.0",
+
+    // WebGPU 타입이 필요한 경우
+    // "@webgpu/types": "^0.1.40"
+  }
+}
