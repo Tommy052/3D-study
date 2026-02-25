@@ -5,11 +5,22 @@
 
 ---
 
+## 추천 강의
+
+| 영상 | 설명 |
+|------|------|
+| [![CMU 15-462 Normal](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | **CMU 15-462 — Texture Mapping & Normal Maps**<br>Tangent Space, 노멀맵 이론과 구현<br>⏱ 80분 · 🎓 Carnegie Mellon University |
+| [![Branch Education](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) | **How do Video Game Graphics Work?**<br>노멀맵이 게임 비주얼에 미치는 영향<br>⏱ 23분 · 🎓 Branch Education |
+
+> 📖 텍스트 레퍼런스: [LearnOpenGL — Normal Mapping](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)
+
+---
+
 ## 원리
 
 ```
 기존 조명 계산:
-  법선 = 실제 폴리곤 면의 방향 (모든 픽셀 동일)
+  법선 = 실제 폴리곤 면의 방향 (삼각형 내 모든 픽셀 동일)
 
 노멀맵 적용:
   법선 = 텍스처에서 픽셀별로 읽어온 방향
@@ -23,12 +34,12 @@
 ```
 RGB → XYZ 법선벡터
 
-R = X (-1 ~ 1 범위를 0 ~ 255로 저장)
-G = Y
-B = Z
+R = X 성분 (-1~1 → 0~255로 저장)
+G = Y 성분
+B = Z 성분
 
-보라/파란색 부분: Z가 크다 = 표면이 카메라를 향함 (기본)
-붉은/초록 부분: X/Y가 크다 = 표면이 기울어짐
+보라/파란색 부분: Z가 큼 = 표면이 카메라를 향함 (기본)
+붉은/초록 부분:  X/Y가 큼 = 표면이 기울어짐
 ```
 
 ---
@@ -36,14 +47,37 @@ B = Z
 ## Tangent Space vs World Space
 
 ```
-Tangent Space Normal Map (일반적):
+Tangent Space (일반적):
   법선이 표면 기준으로 저장됨
-  메쉬를 어떻게 배치해도 올바르게 동작
+  메쉬를 어떻게 배치해도 올바르게 동작 ✅
 
-World Space Normal Map:
+World Space:
   법선이 월드 좌표 기준으로 저장됨
-  메쉬 회전 시 정확도 저하
-  → 잘 쓰이지 않음
+  메쉬 회전 시 정확도 저하 ❌
+```
+
+---
+
+## 버텍스 셰이더에서 TBN 행렬
+
+노멀맵의 Tangent Space를 World Space로 변환하는 행렬.
+
+```glsl
+varying mat3 TBN;
+
+void main() {
+  vec3 T = normalize(mat3(u_model) * a_tangent);
+  vec3 N = normalize(mat3(u_model) * a_normal);
+  T = normalize(T - dot(T, N) * N); // Gram-Schmidt 재직교화
+  vec3 B = cross(N, T);
+
+  TBN = mat3(T, B, N);
+}
+
+// 프래그먼트 셰이더에서
+vec3 normalFromMap = texture2D(normalMap, v_uv).rgb * 2.0 - 1.0;
+vec3 worldNormal   = normalize(TBN * normalFromMap);
+// worldNormal을 조명 계산에 사용
 ```
 
 ---
@@ -54,16 +88,11 @@ World Space Normal Map:
 import { PBRMaterial, Texture } from '@babylonjs/core';
 
 const mat = new PBRMaterial('mat', scene);
+mat.bumpTexture        = new Texture('/textures/normal.png', scene);
+mat.bumpTexture.level  = 1.5; // 강도 조절 (기본 1.0)
 
-// 노멀맵 설정 (bumpTexture = 노멀맵)
-mat.bumpTexture = new Texture('/textures/normal.png', scene);
-
-// 강도 조절 (1.0이 기본, 높을수록 굴곡 강조)
-mat.bumpTexture.level = 1.5;
-
-// 보조: 반전 처리 (소프트웨어마다 Y축 방향이 다를 수 있음)
-mat.invertNormalMapX = false;
-mat.invertNormalMapY = false;
+// Y축 방향이 다른 경우 반전
+mat.invertNormalMapY = true;
 ```
 
 ---
@@ -72,9 +101,9 @@ mat.invertNormalMapY = false;
 
 | 구분 | Height Map | Normal Map |
 |------|-----------|-----------|
-| 저장 | 높이값(흑백) | 법선벡터(RGB) |
-| 변환 필요 | 런타임 변환 필요 | 바로 사용 가능 |
-| 사용처 | 지형, Parallax | 표면 디테일 |
+| 저장 | 높이값 (흑백) | 법선벡터 (RGB) |
+| 런타임 비용 | 변환 필요 | 바로 사용 가능 |
+| 용도 | 지형, Parallax | 표면 디테일 |
 
 ---
 

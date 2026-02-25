@@ -5,6 +5,17 @@
 
 ---
 
+## 추천 강의
+
+| 영상 | 설명 |
+|------|------|
+| [![ThinMatrix Shadow Mapping](https://img.youtube.com/vi/9sEHkT7N7RM/mqdefault.jpg)](https://www.youtube.com/watch?v=9sEHkT7N7RM) | **OpenGL Tutorial 39 — Shadow Mapping (2/3)**<br>PCF로 그림자 경계를 부드럽게 처리하는 방법<br>⏱ 20분 · 🎓 ThinMatrix |
+| [![CMU 15-462 Shadow](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | **CMU 15-462 — Depth & Shadow Techniques**<br>Shadow Map 수학적 원리와 최적화 기법<br>⏱ 80분 · 🎓 Carnegie Mellon University |
+
+> 📖 텍스트 레퍼런스: [LearnOpenGL — Shadow Mapping](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping)
+
+---
+
 ## Shadow Map 원리
 
 ```
@@ -12,90 +23,79 @@
        → 각 픽셀의 깊이값만 저장 (Shadow Map 텍스처)
 
 2단계: 카메라 시점에서 렌더링
-       → 각 픽셀이 빛에서 보이는지 Shadow Map으로 확인
-       → 보이면 빛 받음 (밝음)
-       → 안 보이면 그림자 (어두움)
+       → 각 픽셀을 Shadow Map과 비교
+       → 빛에서 보이면 → 밝음
+       → 빛에서 안 보이면 → 그림자
 ```
 
 ---
 
-## Shadow Map 비교
+## Shadow Map 비교 코드
 
 ```glsl
 // 프래그먼트 셰이더에서
-float shadow = 0.0;
-
-// 현재 픽셀의 빛 공간 깊이
 float currentDepth = lightSpacePos.z;
-
-// Shadow Map에서 가져온 깊이 (빛에서 본 가장 가까운 깊이)
 float closestDepth = texture(shadowMap, lightSpaceUV).r;
 
-// 현재 픽셀이 가장 가까운 것보다 뒤에 있으면 그림자
-if (currentDepth - bias > closestDepth) {
-  shadow = 1.0; // 그림자
-}
+// bias: Shadow Acne(자기 그림자) 방지
+float bias = 0.005;
+float shadow = (currentDepth - bias > closestDepth) ? 1.0 : 0.0;
 ```
 
 ---
 
 ## Shadow Acne (그림자 여드름)
 
-Shadow Map 해상도 한계로 발생하는 자기 그림자 오류.
-
 ```
-해결법: bias (편향값) 추가
-currentDepth - bias > closestDepth
+문제: Shadow Map 해상도 한계로 발생하는 자기 그림자 오류
 
-bias가 너무 작으면 → Acne 발생
-bias가 너무 크면  → Peter Panning (그림자가 물체에서 떠 보임)
+해결: bias (편향값) 추가
+  bias 너무 작으면 → Acne 발생
+  bias 너무 크면  → Peter Panning (그림자가 물체에서 떠 보임)
+
+적정값: 빛의 방향과 면의 각도에 따라 동적으로 계산
+  float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
 ```
 
 ---
 
 ## PCF (Percentage Closer Filtering)
 
-Shadow Map 경계를 부드럽게 만드는 기법.
+그림자 경계를 부드럽게 만드는 기법.
 
 ```glsl
 float shadow = 0.0;
 vec2 texelSize = 1.0 / textureSize(shadowMap, 0);
 
 // 주변 9개 샘플 평균
-for (int x = -1; x <= 1; x++) {
-  for (int y = -1; y <= 1; y++) {
+for(int x = -1; x <= 1; x++) {
+  for(int y = -1; y <= 1; y++) {
     float pcfDepth = texture(shadowMap, lightSpaceUV + vec2(x, y) * texelSize).r;
     shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
   }
 }
-shadow /= 9.0; // 0~1 사이의 부드러운 값
+shadow /= 9.0;
 ```
 
 ---
 
-## Babylon.js에서 그림자 설정
+## Babylon.js에서 그림자
 
 ```typescript
 import { ShadowGenerator, DirectionalLight } from '@babylonjs/core';
 
-// 그림자를 드리울 조명 (DirectionalLight, SpotLight, PointLight)
 const light = new DirectionalLight('light', new Vector3(-1, -2, -1), scene);
+const shadowGen = new ShadowGenerator(2048, light); // 해상도: 1024/2048/4096
 
-// ShadowGenerator 생성 (해상도: 1024, 2048, 4096)
-const shadowGenerator = new ShadowGenerator(2048, light);
+shadowGen.addShadowCaster(box);     // 그림자를 만드는 메쉬
+shadowGen.addShadowCaster(sphere);
 
-// 그림자를 만드는 메쉬 등록
-shadowGenerator.addShadowCaster(box);
-shadowGenerator.addShadowCaster(sphere);
+ground.receiveShadows = true;       // 그림자를 받는 메쉬
 
-// 그림자를 받는 메쉬 설정
-ground.receiveShadows = true;
-
-// 그림자 부드럽게 (PCF)
-shadowGenerator.usePercentageCloserFiltering = true;
-
-// 또는 PCSS (더 자연스러운 부드러운 그림자)
-shadowGenerator.useContactHardeningShadows = true;
+// 품질 설정
+shadowGen.usePercentageCloserFiltering = true; // PCF
+// 또는
+shadowGen.useContactHardeningShadows = true;   // PCSS (가장 자연스러움)
 ```
 
 ---
@@ -107,7 +107,6 @@ shadowGenerator.useContactHardeningShadows = true;
 | Hard Shadow | 낮음 | 빠름 |
 | PCF | 중간 | 중간 |
 | PCSS | 높음 | 느림 |
-| VSM | 높음 | 중간 |
 
 ---
 

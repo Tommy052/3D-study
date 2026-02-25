@@ -5,6 +5,17 @@ GPU가 가장 잘하는 일이다.
 
 ---
 
+## 추천 강의
+
+| 영상 | 설명 |
+|------|------|
+| [![CMU 15-462 Rasterization](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) | **CMU 15-462 — Rasterization & Sampling**<br>래스터화 알고리즘, 샘플링, 앤티앨리어싱<br>⏱ 80분 · 🎓 Carnegie Mellon University |
+| [![Branch Education Pipeline](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) | **How do Video Game Graphics Work?**<br>삼각형이 픽셀로 변환되는 과정을 시각적으로 설명<br>⏱ 23분 · 🎓 Branch Education |
+
+> 📋 [CMU 15-462 전체 플레이리스트](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E)
+
+---
+
 ## 개념
 
 ```
@@ -28,23 +39,16 @@ GPU가 가장 잘하는 일이다.
 P = α*A + β*B + γ*C
 
 조건: α + β + γ = 1, 모두 0 이상이면 삼각형 내부
-
-α = 면적(PBC) / 면적(ABC)
-β = 면적(APC) / 면적(ABC)
-γ = 면적(ABP) / 면적(ABC)
 ```
 
-**활용 — 값 보간:**
+**활용 — UV 보간:**
 ```
 정점 A의 UV = (0, 0)
 정점 B의 UV = (1, 0)
 정점 C의 UV = (0, 1)
 
-픽셀 P에서:
-α=0.5, β=0.3, γ=0.2
-
-P의 UV = 0.5*(0,0) + 0.3*(1,0) + 0.2*(0,1)
-       = (0.3, 0.2)
+픽셀 P에서 α=0.5, β=0.3, γ=0.2
+P의 UV = 0.5*(0,0) + 0.3*(1,0) + 0.2*(0,1) = (0.3, 0.2)
 ```
 
 ---
@@ -61,35 +65,31 @@ P의 UV = 0.5*(0,0) + 0.3*(1,0) + 0.2*(0,1)
 
 ---
 
-## 클리핑 (Clipping)
+## 앤티앨리어싱 (Anti-Aliasing)
 
-카메라 시야 밖의 삼각형은 그리지 않음.
+삼각형 경계의 계단 현상 제거.
 
 ```
-Frustum (절두체) — 카메라가 볼 수 있는 영역:
-  Near Plane  : 너무 가까운 것 제거
-  Far Plane   : 너무 먼 것 제거
-  Left/Right  : 화면 좌우 밖 제거
-  Top/Bottom  : 화면 위아래 밖 제거
+MSAA: 픽셀 내 여러 샘플로 가장자리 부드럽게
+FXAA: 포스트프로세싱으로 빠르게 처리
+TAA:  시간 축 여러 프레임 샘플 활용
 ```
 
 ---
 
-## 백페이스 컬링 (Backface Culling)
-
-뒤를 향한 삼각형은 그리지 않음 → 성능 최적화
+## 클리핑 & 백페이스 컬링
 
 ```
-삼각형의 정점 순서 (Winding Order):
-  시계 방향     = 뒷면
-  반시계 방향   = 앞면 (카메라를 향함)
+Frustum Culling: 카메라 시야 밖 삼각형 제거 (Near/Far/Left/Right Plane)
 
-→ 뒷면 삼각형은 래스터화 전에 제거
+Backface Culling: 뒤를 향한 면 제거
+  반시계 방향 정점 = 앞면 (렌더)
+  시계 방향 정점   = 뒷면 (제거)
 ```
 
 ```typescript
-// Babylon.js에서 컬링 설정
-mat.backFaceCulling = true;  // 기본값 (뒷면 제거)
+// Babylon.js
+mat.backFaceCulling = true;  // 기본값 (성능 최적화)
 mat.backFaceCulling = false; // 양면 렌더링 (얇은 면, 풀 등)
 ```
 
