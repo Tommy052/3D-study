@@ -4,6 +4,17 @@ WebGPU로 첫 삼각형을 그리는 전체 과정.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Dr. Jack Xu — Create First Triangle](https://img.youtube.com/vi/QWh968pmsbg/mqdefault.jpg)](https://www.youtube.com/watch?v=QWh968pmsbg) | [![CMU 15-462 — Rasterization Pipeline](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Dr. Jack Xu** — WebGPU로 첫 삼각형 렌더링 (WGSL + Pipeline) | **CMU 15-462** — 렌더 파이프라인과 래스터화 이론 |
+
+> **공식 코드랩**: [Your first WebGPU app — Step 1](https://codelabs.developers.google.com/your-first-webgpu-app#2)
+
+---
+
 ## 전체 코드
 
 ```typescript
@@ -89,6 +100,19 @@ main();
 | 셰이더 컴파일 | `gl.compileShader()` | `createShaderModule()` |
 | 파이프라인 | 암묵적 전역 상태 | 명시적 `createRenderPipeline()` |
 | 렌더 커맨드 | 즉시 실행 | 인코딩 후 `submit()` |
+
+---
+
+## 렌더 파이프라인 구조
+
+```
+createRenderPipeline({
+  vertex:    { module, entryPoint }   ← 버텍스 셰이더
+  fragment:  { module, entryPoint, targets } ← 프래그먼트 셰이더 + 출력 포맷
+  primitive: { topology }             ← 그리기 방식 (triangle-list 등)
+  depthStencil: ...                   ← 깊이/스텐실 (선택)
+})
+```
 
 ---
 

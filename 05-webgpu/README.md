@@ -5,6 +5,17 @@ WebGPU는 WebGL의 후계자로, 현대 GPU API(Vulkan, Metal, DirectX 12)의 �
 
 ---
 
+## 추천 강의
+
+| | |
+|---|---|
+| [![Dr. Jack Xu — WebGPU Step-by-Step](https://img.youtube.com/vi/-hXtt4ioH5A/mqdefault.jpg)](https://www.youtube.com/watch?v=-hXtt4ioH5A) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Dr. Jack Xu** — WebGPU Step-by-Step (Device 셋업부터 3D 렌더링까지) | **CMU 15-462** — GPU 파이프라인·셰이더 이론 |
+
+> **핵심 레퍼런스**: [WebGPU Fundamentals](https://webgpufundamentals.org/) · [Your first WebGPU app (Google Codelab)](https://codelabs.developers.google.com/your-first-webgpu-app)
+
+---
+
 ## 목차
 
 ### 기초 (Basics)

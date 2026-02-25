@@ -5,6 +5,17 @@ Adapter → Device → Context 순서로 설정한다.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Dr. Jack Xu — Set up Development Environment](https://img.youtube.com/vi/-hXtt4ioH5A/mqdefault.jpg)](https://www.youtube.com/watch?v=-hXtt4ioH5A) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Dr. Jack Xu** — WebGPU 개발 환경 구성과 Adapter/Device 초기화 | **CMU 15-462** — GPU 아키텍처와 렌더링 파이프라인 이론 |
+
+> **공식 가이드**: [Your first WebGPU app (Google Codelab)](https://codelabs.developers.google.com/your-first-webgpu-app) · [WebGPU Fundamentals — Setup](https://webgpufundamentals.org/webgpu/lessons/webgpu-fundamentals.html)
+
+---
+
 ## 개념
 
 ```
@@ -112,6 +123,17 @@ npm install --save-dev @webgpu/types
   }
 }
 ```
+
+---
+
+## WebGL vs WebGPU 초기화 비교
+
+| 단계 | WebGL | WebGPU |
+|------|-------|--------|
+| 컨텍스트 | `canvas.getContext('webgl2')` | `canvas.getContext('webgpu')` |
+| 동기/비동기 | 동기 | **비동기** (await 필요) |
+| 디바이스 오류 | 확인 어려움 | `device.lost` Promise |
+| 포맷 설정 | 자동 | `getPreferredCanvasFormat()` |
 
 ---
 
