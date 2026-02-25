@@ -5,6 +5,17 @@ Babylon.js가 얼마나 많은 것을 추상화해주는지 체감하며 배운�
 
 ---
 
+## 추천 강의
+
+| | |
+|---|---|
+| [![Wael Yasmina — Babylon.js for Absolute Beginners](https://img.youtube.com/vi/e6EkrLr8g_o/mqdefault.jpg)](https://www.youtube.com/watch?v=e6EkrLr8g_o) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Wael Yasmina** — Babylon.js 입문 (Scene·Mesh·Material·Animation 전체) | **CMU 15-462** — 렌더링 파이프라인·조명·PBR 이론 |
+
+> **공식 레퍼런스**: [Babylon.js 공식 문서](https://doc.babylonjs.com/) · [Babylon.js Playground](https://playground.babylonjs.com/)
+
+---
+
 ## 목차
 
 ### 기초 (Basics)

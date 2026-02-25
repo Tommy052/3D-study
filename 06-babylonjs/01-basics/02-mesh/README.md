@@ -4,6 +4,17 @@ Babylon.js에서 3D 물체를 만드는 방법.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Wael Yasmina — Babylon.js for Absolute Beginners](https://img.youtube.com/vi/e6EkrLr8g_o/mqdefault.jpg)](https://www.youtube.com/watch?v=e6EkrLr8g_o) | [![Branch Education — How do Graphics Cards Work?](https://img.youtube.com/vi/C8YtdC8mxTU/mqdefault.jpg)](https://www.youtube.com/watch?v=C8YtdC8mxTU) |
+| **Wael Yasmina** — MeshBuilder로 도형 생성, 위치·회전·크기 제어 | **Branch Education** — 메쉬 데이터가 GPU에서 처리되는 원리 |
+
+> **공식 문서**: [Babylon.js — Meshes](https://doc.babylonjs.com/features/featuresDeepDive/mesh) · [MeshBuilder API](https://doc.babylonjs.com/typedoc/classes/BABYLON.MeshBuilder)
+
+---
+
 ## 기본 도형 (MeshBuilder)
 
 ```typescript
@@ -84,6 +95,8 @@ const instance2 = mesh.createInstance('inst2');
 instance1.position.x = 3;
 instance2.position.x = -3;
 ```
+
+> `createInstance()`는 내부적으로 WebGL의 `drawElementsInstanced()`를 사용 — 같은 메쉬 수백 개를 Draw Call 1번으로 처리
 
 ---
 

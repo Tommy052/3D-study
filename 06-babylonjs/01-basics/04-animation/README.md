@@ -4,6 +4,17 @@ Babylon.js에서 물체를 움직이는 방법.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Wael Yasmina — Babylon.js for Absolute Beginners](https://img.youtube.com/vi/e6EkrLr8g_o/mqdefault.jpg)](https://www.youtube.com/watch?v=e6EkrLr8g_o) | [![CMU 15-462 — Animation](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Wael Yasmina** — 렌더 루프·키프레임 애니메이션 실습 | **CMU 15-462** — 보간·이징·애니메이션 이론 |
+
+> **공식 문서**: [Babylon.js — Animations](https://doc.babylonjs.com/features/featuresDeepDive/animation) · [AnimationGroup API](https://doc.babylonjs.com/typedoc/classes/BABYLON.AnimationGroup)
+
+---
+
 ## 렌더 루프를 이용한 애니메이션
 
 ```typescript
@@ -69,6 +80,21 @@ group.addTargetedAnimation(anim2, mesh2);
 group.play(true); // 루프 재생
 group.pause();
 group.stop();
+```
+
+---
+
+## glTF 모델 내장 애니메이션 재생
+
+```typescript
+import { SceneLoader } from '@babylonjs/core';
+import '@babylonjs/loaders/glTF'; // glTF 로더 등록
+
+const result = await SceneLoader.ImportMeshAsync('', '/models/', 'character.glb', scene);
+
+// 모델에 포함된 애니메이션 그룹
+const animGroups = result.animationGroups;
+animGroups[0].play(true); // 첫 번째 애니메이션 루프 재생
 ```
 
 ---

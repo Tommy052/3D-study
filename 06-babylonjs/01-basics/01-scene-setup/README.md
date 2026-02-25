@@ -4,6 +4,17 @@ Babylon.js의 기본 구성 요소: Engine, Scene, Camera, Light.
 
 ---
 
+## 관련 강의
+
+| | |
+|---|---|
+| [![Wael Yasmina — Babylon.js for Absolute Beginners](https://img.youtube.com/vi/e6EkrLr8g_o/mqdefault.jpg)](https://www.youtube.com/watch?v=e6EkrLr8g_o) | [![CMU 15-462 — Computer Graphics](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **Wael Yasmina** — Engine·Scene·Camera·Light 전체 셋업 실습 | **CMU 15-462** — 카메라 모델·조명 이론 |
+
+> **공식 가이드**: [Babylon.js — Getting Started](https://doc.babylonjs.com/features/introductionToFeatures/chap1/first_app) · [Playground 예제](https://playground.babylonjs.com/)
+
+---
+
 ## 필수 구성 요소
 
 ```
