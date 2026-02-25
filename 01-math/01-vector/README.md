@@ -5,6 +5,21 @@
 
 ---
 
+## 추천 강의
+
+### 3Blue1Brown — Essence of Linear Algebra
+
+| 영상 | 설명 |
+|------|------|
+| [![Ch1. Vectors](https://img.youtube.com/vi/fNk_zzaMoSs/mqdefault.jpg)](https://www.youtube.com/watch?v=fNk_zzaMoSs) | **Ch1. Vectors, what even are they?**<br>벡터의 물리학·수학적 관점을 시각적으로 설명<br>⏱ 9분 · 🎓 3Blue1Brown |
+| [![Ch2. Linear combinations](https://img.youtube.com/vi/k7RM-ot2NWY/mqdefault.jpg)](https://www.youtube.com/watch?v=k7RM-ot2NWY) | **Ch2. Linear combinations, span, basis vectors**<br>벡터의 선형 결합과 기저 벡터 개념<br>⏱ 10분 · 🎓 3Blue1Brown |
+| [![Ch9. Dot products](https://img.youtube.com/vi/LyGKycYT2v0/mqdefault.jpg)](https://www.youtube.com/watch?v=LyGKycYT2v0) | **Ch9. Dot products and duality**<br>내적의 기하학적 의미와 쌍대성<br>⏱ 14분 · 🎓 3Blue1Brown |
+| [![Ch10. Cross products](https://img.youtube.com/vi/eu6i7WJeinw/mqdefault.jpg)](https://www.youtube.com/watch?v=eu6i7WJeinw) | **Ch10. Cross products**<br>외적의 기하학적 의미와 오른손 법칙<br>⏱ 9분 · 🎓 3Blue1Brown |
+
+> 전체 플레이리스트: [Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
+
+---
+
 ## 개념
 
 ### 스칼라 vs 벡터
@@ -165,17 +180,10 @@ import { Vector3 } from '@babylonjs/core';
 const pos = new Vector3(1, 2, 3);
 const dir = new Vector3(0, 1, 0);
 
-// 내적
-const dot = Vector3.Dot(pos, dir);
-
-// 외적
-const cross = Vector3.Cross(pos, dir);
-
-// 정규화
+const dot        = Vector3.Dot(pos, dir);
+const cross      = Vector3.Cross(pos, dir);
 const normalized = dir.normalize();
-
-// 두 점 사이의 거리
-const dist = Vector3.Distance(pos, Vector3.Zero());
+const dist       = Vector3.Distance(pos, Vector3.Zero());
 ```
 
 ---
@@ -198,14 +206,6 @@ a = X축 (1,0,0)
 b = Y축 (0,1,0)
 a × b = Z축 (0,0,1) ← 두 벡터에 수직, 오른손 법칙
 ```
-
----
-
-## 실습
-
-1. Vec3 클래스를 직접 구현해보기
-2. Canvas 2D에 두 벡터와 내적값을 시각화해보기
-3. 두 점 사이의 방향벡터 계산해보기
 
 ---
 

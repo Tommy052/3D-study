@@ -4,6 +4,15 @@ sin, cos, tan — 3D에서 주기적인 움직임, 방향 계산, 각도 변환�
 
 ---
 
+## 추천 강의
+
+| 영상 | 설명 |
+|------|------|
+| [![Unit circle](https://img.youtube.com/vi/yBw67Fb31Cs/mqdefault.jpg)](https://www.youtube.com/watch?v=yBw67Fb31Cs) | **Unit Circle Trigonometry**<br>단위원과 sin/cos의 관계<br>⏱ 14분 |
+| [![Trig for game dev](https://img.youtube.com/vi/qeyp-YSPp7c/mqdefault.jpg)](https://www.youtube.com/watch?v=qeyp-YSPp7c) | **Trigonometry for Game Developers**<br>게임 개발 맥락에서 삼각함수 실전 활용<br>⏱ 20분 |
+
+---
+
 ## 라디안 vs 도 (Degree)
 
 3D 그래픽스는 **라디안(radian)**을 사용한다.
@@ -16,16 +25,14 @@ sin, cos, tan — 3D에서 주기적인 움직임, 방향 계산, 각도 변환�
   0°   = 0
   90°  = π/2  ≈ 1.5708
   180° = π    ≈ 3.1416
-  270° = 3π/2 ≈ 4.7124
   360° = 2π   ≈ 6.2832
 ```
 
 ```typescript
-// TypeScript에서
 const toRad = (deg: number) => deg * (Math.PI / 180);
 const toDeg = (rad: number) => rad * (180 / Math.PI);
 
-mesh.rotation.y = toRad(45); // 45도 회전
+mesh.rotation.y = toRad(45);
 ```
 
 ---
@@ -36,10 +43,6 @@ mesh.rotation.y = toRad(45); // 45도 회전
 단위원에서:
   x = cos(θ)
   y = sin(θ)
-
-θ가 0 → 2π로 변할 때:
-  cos: 1 → 0 → -1 → 0 → 1  (x 좌표)
-  sin: 0 → 1 → 0 → -1 → 0  (y 좌표)
 ```
 
 **원운동 예시:**
@@ -47,10 +50,9 @@ mesh.rotation.y = toRad(45); // 45도 회전
 let angle = 0;
 
 engine.runRenderLoop(() => {
-  angle += 0.02; // 매 프레임 증가
+  angle += engine.getDeltaTime() * 0.001;
 
-  // 반지름 5인 원 위를 돌기
-  mesh.position.x = Math.cos(angle) * 5;
+  mesh.position.x = Math.cos(angle) * 5; // 반지름 5
   mesh.position.z = Math.sin(angle) * 5;
 
   scene.render();
@@ -59,25 +61,16 @@ engine.runRenderLoop(() => {
 
 ---
 
-## tan / atan2 — 각도 계산
+## atan2 — 각도 계산
 
 ```
-tan(θ) = sin(θ) / cos(θ) = y / x
-
-역함수:
-  Math.atan(y/x)    → -π/2 ~ π/2 (4사분면 구분 못함)
-  Math.atan2(y, x)  → -π ~ π    (4사분면 모두 구분)
+Math.atan2(y, x) → -π ~ π 범위로 모든 사분면 구분
 ```
 
-**atan2 활용:**
 ```typescript
-// 두 점 사이의 각도 (적을 향해 바라보기)
-const enemy = new Vector3(3, 0, 5);
-const player = new Vector3(0, 0, 0);
-
+// 적을 향해 바라보기
 const direction = enemy.subtract(player);
 const angle = Math.atan2(direction.x, direction.z);
-
 player.rotation.y = angle;
 ```
 
@@ -85,45 +78,20 @@ player.rotation.y = angle;
 
 ## 3D에서 자주 쓰는 패턴
 
-### 진자 운동 (Pendulum)
+### 진자 운동
 ```typescript
-let t = 0;
-engine.runRenderLoop(() => {
-  t += 0.05;
-  mesh.rotation.z = Math.sin(t) * 0.5; // ±0.5 라디안 진동
-  scene.render();
-});
+mesh.rotation.z = Math.sin(t) * 0.5;
 ```
 
-### 호흡 효과 (Breathing / Pulsing)
+### 호흡 효과
 ```typescript
-let t = 0;
-engine.runRenderLoop(() => {
-  t += 0.03;
-  const scale = 1 + Math.sin(t) * 0.1; // 0.9 ~ 1.1 사이 진동
-  mesh.scaling.setAll(scale);
-  scene.render();
-});
+const scale = 1 + Math.sin(t) * 0.1; // 0.9 ~ 1.1
+mesh.scaling.setAll(scale);
 ```
 
-### 나선형 이동 (Spiral)
+### 카메라 방향으로 이동
 ```typescript
-let t = 0;
-engine.runRenderLoop(() => {
-  t += 0.02;
-  mesh.position.x = Math.cos(t) * t * 0.1;
-  mesh.position.z = Math.sin(t) * t * 0.1;
-  mesh.position.y = t * 0.05;
-  scene.render();
-});
-```
-
-### 카메라 방향 → 이동 벡터
-```typescript
-// 캐릭터가 바라보는 방향으로 이동
 const angle = mesh.rotation.y;
-const speed = 0.1;
-
 mesh.position.x += Math.sin(angle) * speed;
 mesh.position.z += Math.cos(angle) * speed;
 ```
@@ -138,7 +106,6 @@ mesh.position.z += Math.cos(angle) * speed;
 | 원운동 | `cos(t), sin(t)` | 원 위의 점 |
 | 진동 | `sin(t) * amplitude` | 진자, 파동 |
 | 각도 계산 | `Math.atan2(y, x)` | 방향 각도 |
-| 거리 | `Math.sqrt(dx²+dy²+dz²)` | 두 점 거리 |
 
 ---
 

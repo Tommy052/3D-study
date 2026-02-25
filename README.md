@@ -4,6 +4,24 @@
 
 ---
 
+## 핵심 추천 강의
+
+| 강의 | 학교 | 내용 | 링크 |
+|------|------|------|------|
+| **Essence of Linear Algebra** | 3Blue1Brown | 벡터·행렬 직관 (수학 기초) | [YouTube 플레이리스트](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) |
+| **18.06 Linear Algebra** | MIT (Gilbert Strang) | 선형대수학 전체 (2000만 뷰) | [MIT OCW](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/) · [YouTube](https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8) |
+| **15-462 Computer Graphics** | CMU (Keenan Crane) | 3D 그래픽스 전체 커리큘럼 | [강의 사이트](http://15462.courses.cs.cmu.edu/) · [YouTube](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **CS248 Interactive Graphics** | Stanford | 렌더링·애니메이션·지오메트리 | [강의 사이트](http://web.stanford.edu/class/cs248/lectures.html) |
+
+### 미리보기
+
+| | | |
+|---|---|---|
+| [![3B1B Vectors](https://img.youtube.com/vi/fNk_zzaMoSs/mqdefault.jpg)](https://www.youtube.com/watch?v=fNk_zzaMoSs) | [![MIT Strang](https://img.youtube.com/vi/J7DzL2_Na80/mqdefault.jpg)](https://www.youtube.com/watch?v=J7DzL2_Na80) | [![CMU 15-462](https://img.youtube.com/vi/t7Ztio8cwqM/mqdefault.jpg)](https://www.youtube.com/playlist?list=PL9_jI1bdZmz2emSh0UQ5iOdT2xRHFHL7E) |
+| **3Blue1Brown** — 벡터 | **MIT 18.06** — 선형대수학 | **CMU 15-462** — 컴퓨터 그래픽스 |
+
+---
+
 ## 커리큘럼
 
 | 단계 | 폴더 | 주제 | 설명 |
